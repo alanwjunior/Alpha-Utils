@@ -2,7 +2,7 @@
   <div class="menu">
     <el-row type="flex" justify="end">
       <el-col :span="4" class="logotipo">
-        <h1>Alpha Utils</h1>
+        <h1 style="cursor: pointer" @click="backDashboard">Alpha Utils</h1>
       </el-col>
       <el-col :span="12" :offset="8">
         <el-row>
@@ -50,6 +50,9 @@ export default {
       } else {
         console.log('command')
       }
+    },
+    backDashboard () {
+      this.$router.push('/dashboard')
     }
   }
 }

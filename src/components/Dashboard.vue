@@ -7,7 +7,7 @@
             <h3>Blip Helper Scripts</h3>
           </div>
           <div class="dashboard-cards">Accelerate your bot development process using scripts to create Trackings.</div>
-          <el-button plain class="try-it-btn">Try it!</el-button>
+          <el-button plain class="try-it-btn" @click="goToBlipHelperScripts">Try it!</el-button>
         </el-card>
       </el-col>
       <el-col :span="8">
@@ -65,6 +65,9 @@ export default {
   methods: {
     goToBotStrapper () {
       this.$router.push('/botstrapper')
+    },
+    goToBlipHelperScripts () {
+      this.$router.push('/bliphelperscripts')
     }
   }
 }

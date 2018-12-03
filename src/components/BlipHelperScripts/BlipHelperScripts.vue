@@ -1,0 +1,93 @@
+<template>
+  <div class="blip-helper-scripts">
+    <el-row :gutter="50">
+      <el-col :span="6">
+        <el-menu
+          class="el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose">
+          <el-menu-item index="1" @click="navIdxSelected = 1">
+              <span>Regexifybot</span>
+          </el-menu-item>
+          <el-menu-item index="2" @click="navIdxSelected = 2">
+            <span>Addtrackingandsessionscripts</span>
+          </el-menu-item>
+          <el-menu-item index="3" @click="navIdxSelected = 3">
+            <span>Addextras</span>
+          </el-menu-item>
+          <el-menu-item index="4" @click="navIdxSelected = 4">
+            <span>Addstandardtrackingscripts</span>
+          </el-menu-item>
+          <el-menu-item index="5" @click="navIdxSelected = 5">
+            <span>AddsessionidtoScripts</span>
+          </el-menu-item>
+          <el-menu-item index="6" @click="navIdxSelected = 6">
+            <span>Addlaststatescript</span>
+          </el-menu-item>
+          <el-menu-item index="7" @click="navIdxSelected = 7">
+            <span>Addchatbaseintegrationscripts</span>
+          </el-menu-item>
+          <el-menu-item index="8" @click="navIdxSelected = 8">
+            <span>Clearbotscript</span>
+          </el-menu-item>
+        </el-menu>
+      </el-col>
+      <el-col :span="18">
+        <el-card>
+          <regexifybot v-if="navIdxSelected == 1" />
+          <addtrackingandsessionscripts v-if="navIdxSelected == 2"/>
+          <addextras v-if="navIdxSelected == 3" />
+          <addstandardtrackingscripts v-if="navIdxSelected == 4" />
+          <addsessionidtoScripts v-if="navIdxSelected == 5" />
+          <addlaststatescript v-if="navIdxSelected == 6" />
+          <addchatbaseintegrationscripts v-if="navIdxSelected == 7" />
+          <clearbotscript v-if="navIdxSelected == 8" />
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
+</template>
+
+<script>
+import Regexifybot from './Regexifybot.vue'
+import Addtrackingandsessionscripts from './Addtrackingandsessionscripts.vue'
+import Addextras from './Addextras.vue'
+import Addstandardtrackingscripts from './Addstandardtrackingscripts.vue'
+import AddsessionidtoScripts from './AddsessionidtoScripts.vue'
+import Addlaststatescript from './Addlaststatescript.vue'
+import Addchatbaseintegrationscripts from './Addchatbaseintegrationscripts.vue'
+import Clearbotscript from './Clearbotscript.vue'
+export default {
+  components: {
+    Regexifybot: Regexifybot,
+    Addtrackingandsessionscripts: Addtrackingandsessionscripts,
+    Addextras: Addextras,
+    Addstandardtrackingscripts: Addstandardtrackingscripts,
+    AddsessionidtoScripts: AddsessionidtoScripts,
+    Addlaststatescript: Addlaststatescript,
+    Addchatbaseintegrationscripts: Addchatbaseintegrationscripts,
+    Clearbotscript: Clearbotscript
+  },
+  data () {
+    return {
+      navIdxSelected: null
+    }
+  },
+  methods: {
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
+    }
+  }
+}
+</script>
+
+<style>
+.blip-helper-scripts {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 5%;
+}
+</style>

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Dashboard from './components/Dashboard.vue'
 import BotStrapper from './components/BotStrapper/BotStrapper'
+import BlipHelperScripts from './components/BlipHelperScripts/BlipHelperScripts.vue'
 Vue.use(Router)
 
 const router = new Router({
@@ -23,19 +24,24 @@ const router = new Router({
       path: '/botstrapper',
       name: 'botstrapper',
       component: BotStrapper
+    },
+    {
+      path: '/bliphelperscripts',
+      name: 'bliphelperscripts',
+      component: BlipHelperScripts
     }
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  const token = localStorage.token
-  if (token && to.path === '/') {
-    next('/dashboard')
-  } else if (!token) {
-    next('/')
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   const token = localStorage.token
+//   if (token && to.path === '/') {
+//     next('/dashboard')
+//   } else if (!token) {
+//     next('/')
+//   } else {
+//     next()
+//   }
+// })
 
 export default router
