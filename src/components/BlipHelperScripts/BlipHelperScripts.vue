@@ -10,7 +10,7 @@
               <span>Regexifybot</span>
           </el-menu-item>
           <el-menu-item index="2" @click="navIdxSelected = 2">
-            <span>Addtrackingandsessionscripts</span>
+            <span>Addtrackingandsession</span>
           </el-menu-item>
           <el-menu-item index="3" @click="navIdxSelected = 3">
             <span>Addextras</span>

@@ -28,6 +28,7 @@ namespace AlphaUtils
             services.AddMvc();
             services.AddScoped<IBlipHelperScriptsService, BlipHelperScriptsService>();
             services.AddScoped<ICMDService, CMDService>();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +38,12 @@ namespace AlphaUtils
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials());
 
             app.UseMvc();
         }

@@ -7,13 +7,13 @@
       <el-col :span="12" :offset="8">
         <el-row>
           <el-col :span="4" class="menu-item">
-            <span>Blip Helper Scrips</span>
+            <span class="cursor-pointer" @click="goToBlipHelperScripts">Blip Helper Scripts</span>
           </el-col>
           <el-col :span="4" class="menu-item">
-            <span>Blip CLI</span>
+            <span class="cursor-pointer">Blip CLI</span>
           </el-col>
           <el-col :span="4" class="menu-item">
-            <span>BotStrapper</span>
+            <span class="cursor-pointer">BotStrapper</span>
           </el-col>
           <el-col :span="4" :offset="4" class="menu-item">
             <el-dropdown @command="handleDropdown">
@@ -53,12 +53,15 @@ export default {
     },
     backDashboard () {
       this.$router.push('/dashboard')
+    },
+    goToBlipHelperScripts () {
+      this.$router.push('/bliphelperscripts')
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .menu {
   background-color: #fff;
 }
@@ -74,5 +77,12 @@ export default {
 .menu-item span {
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+  &:hover {
+    opacity: 0.9;
+  }
 }
 </style>
