@@ -5,7 +5,7 @@
         <el-option
           v-for="item in bots"
           :key="item.id"
-          :label="item.shortName"
+          :label="item.name"
           :value="item.shortName">
         </el-option>
       </el-select>
@@ -14,26 +14,15 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
-  mounted () {
-    const token = localStorage.getItem('token')
-    axios.defaults.headers.common = { 'Authorization': 'Token ' + token }
-    axios.get('https://api.blip.ai/applications/mine')
-      .then(response => {
-        this.bots = response.data
-      })
-      .catch(error => {
-        this.$notify.error({
-          title: 'Error',
-          message: error.message,
-          showClose: false
-        })
-      })
+  props: {
+    bots: {
+      type: Array,
+      required: true
+    }
   },
   data () {
     return {
-      bots: null,
       selectedBot: null,
       labelPosition: 'top'
     }

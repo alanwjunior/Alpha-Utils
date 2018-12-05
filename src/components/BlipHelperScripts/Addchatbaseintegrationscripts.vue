@@ -14,7 +14,7 @@
       </el-alert>
     </div>
     <el-row>
-      <bot-select @selectedBot="updateSelectedBot"/>
+      <bot-select @selectedBot="updateSelectedBot" :bots="bots"/>
     </el-row>
     <el-row>
       <el-button @click="runScripts">Go</el-button>
@@ -24,16 +24,17 @@
 
 <script>
 import BotSelect from './../commons/BotSelect.vue'
-import guidService from './../../services/guid'
 
 import { mapActions } from 'vuex'
 export default {
   components: {
     BotSelect: BotSelect
   },
-  mounted () {
-    console.log('guidService')
-    console.log(guidService.newGuid())
+  props: {
+    bots: {
+      type: Array,
+      required: true
+    }
   },
   data () {
     return {

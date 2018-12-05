@@ -6,28 +6,28 @@
           <div style="height: 300px;">
             <el-steps direction="vertical" :active="stepNumber">
               <el-step title="Insert the bot name"></el-step>
-              <el-step title="Result">Teste</el-step>
+              <el-step title="Configuration"></el-step>
+              <!-- <el-step title="Resources"></el-step> -->
+              <el-step title="Result"></el-step>
             </el-steps>
           </div>
         </el-col>
-        <el-col :span="20">
-          <div class="step-one" v-if="stepNumber === 1">
-            <el-form label-position="top" label-width="100px">
-                <el-form-item label="Bot Name:">
-                  <el-input placeholder="Type the bot name" v-model="botName" class="bot-name-input">
-                    <el-button slot="append" @click="createBot" class="">Create</el-button>
-                  </el-input>
-                </el-form-item>
-            </el-form>
-          </div>
-        </el-col>
+        <first-step  v-if="stepNumber === 1" @goToSecondStep="stepNumber = 2" />
+        <second-step v-if="stepNumber === 2" @goToResult="stepNumber = 3" @backFirstStep="stepNumber = 1"/>
       </el-row>
     </el-card>
   </div>
 </template>
 
 <script>
+import FirstStep from './FirstStep.vue'
+import SecondStep from './SecondStep.vue'
+
 export default {
+  components: {
+    FirstStep: FirstStep,
+    SecondStep: SecondStep
+  },
   data () {
     return {
       stepNumber: 1,
@@ -35,8 +35,13 @@ export default {
     }
   },
   methods: {
-    createBot () {
+    goToConfigurations () {
       this.stepNumber++
+    },
+    createBot () {
+      // const token = localStorage.getItem('token')
+      // axios.post('https://api.blip.ai/applications')
+      //   .then()
     }
   }
 }

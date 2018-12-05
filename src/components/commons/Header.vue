@@ -2,7 +2,7 @@
   <div class="menu">
     <el-row type="flex" justify="end">
       <el-col :span="4" class="logotipo">
-        <h1 style="cursor: pointer; font-size: 25px; margin: 3% 0%;" @click="backDashboard"><img style="width: 25px" src="../../assets/bot-icon.jpg" alt=""> alpha utils</h1>
+        <h1 style="cursor: pointer; font-size: 25px; margin: 3% 0%;" @click="backDashboard"><img style="width: 35px" src="../../assets/bot-icon.jpg" alt=""></h1>
       </el-col>
       <el-col :span="12" :offset="8">
         <el-row>
@@ -78,6 +78,7 @@ export default {
 
 .menu-item {
   padding: 3% 0%;
+  margin-top: 1%;
 }
 
 .menu-item span {

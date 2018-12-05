@@ -26,6 +26,16 @@ export default new Vuex.Store({
       axios.defaults.headers.common = { 'Authorization': 'Token ' + token }
       return axios.get(state.blipApiUrl + 'applications/' + botShortName)
     },
+    listBots ({ state }) {
+      const token = localStorage.getItem('token')
+      axios.defaults.headers.common = { 'Authorization': 'Token ' + token }
+      return axios.get(state.blipApiUrl + 'applications/mine')
+    },
+    createBot ({ state }, botShortName) {
+      const token = localStorage.getItem('token')
+      axios.defaults.headers.common = { 'Authorization': 'Token ' + token }
+      // return axios.get(state.blipApiUrl + 'applications/' + botShortName)
+    },
     getBotPublishedFlow ({ state }, encodedAuthKey) {
       axios.defaults.headers.common = { 'Authorization': 'Key ' + encodedAuthKey, 'Content-Type': 'application/json' }
       return axios.post(state.blipSocketUrl + 'commands', {

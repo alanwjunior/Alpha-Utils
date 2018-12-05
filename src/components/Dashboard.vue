@@ -33,8 +33,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   created () {
     let token = localStorage.getItem('token')
@@ -42,24 +40,8 @@ export default {
       this.$router.push('/')
     }
   },
-  mounted () {
-    let token = localStorage.getItem('token')
-    axios.defaults.headers.common = { 'Authorization': 'Token ' + token }
-    axios.get('https://api.blip.ai/applications/mine')
-      .then(response => {
-        this.bots = response.data.map(r => r.name)
-      })
-      .catch(error => {
-        this.$notify.error({
-          title: 'Error',
-          message: error.message,
-          showClose: false
-        })
-      })
-  },
   data () {
     return {
-      bots: []
     }
   },
   methods: {
@@ -94,7 +76,7 @@ export default {
 }
 
 .try-it-btn {
-  background-color: black;
+  background-color: #8e8f92;
   color: white;
   text-transform: uppercase;
   font-weight: 700;

@@ -12,7 +12,7 @@
       show-icon>
     </el-alert>
     <el-row>
-      <bot-select @selectedBot="updateSelectedBot"/>
+      <bot-select @selectedBot="updateSelectedBot" :bots="bots" />
     </el-row>
     <el-row>
       <el-button @click="runScripts">Go</el-button>
@@ -26,6 +26,12 @@ import { mapActions } from 'vuex'
 export default {
   components: {
     BotSelect: BotSelect
+  },
+  props: {
+    bots: {
+      type: Array,
+      required: true
+    }
   },
   data () {
     return {

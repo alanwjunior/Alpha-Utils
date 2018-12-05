@@ -34,14 +34,14 @@
       </el-col>
       <el-col :span="18">
         <el-card>
-          <regexifybot v-if="navIdxSelected == 1" />
-          <addtrackingandsessionscripts v-if="navIdxSelected == 2"/>
-          <addextras v-if="navIdxSelected == 3" />
-          <addstandardtrackingscripts v-if="navIdxSelected == 4" />
-          <addsessionidtoScripts v-if="navIdxSelected == 5" />
-          <addlaststatescript v-if="navIdxSelected == 6" />
-          <addchatbaseintegrationscripts v-if="navIdxSelected == 7" />
-          <clearbotscript v-if="navIdxSelected == 8" />
+          <regexifybot v-if="navIdxSelected == 1" :bots="bots" />
+          <addtrackingandsessionscripts v-if="navIdxSelected == 2" :bots="bots" />
+          <addextras v-if="navIdxSelected == 3" :bots="bots" />
+          <addstandardtrackingscripts v-if="navIdxSelected == 4" :bots="bots" />
+          <addsessionidtoScripts v-if="navIdxSelected == 5" :bots="bots" />
+          <addlaststatescript v-if="navIdxSelected == 6" :bots="bots" />
+          <addchatbaseintegrationscripts v-if="navIdxSelected == 7" :bots="bots" />
+          <clearbotscript v-if="navIdxSelected == 8" :bots="bots" />
         </el-card>
       </el-col>
     </el-row>
@@ -57,6 +57,7 @@ import AddsessionidtoScripts from './AddsessionidtoScripts.vue'
 import Addlaststatescript from './Addlaststatescript.vue'
 import Addchatbaseintegrationscripts from './Addchatbaseintegrationscripts.vue'
 import Clearbotscript from './Clearbotscript.vue'
+import { mapActions } from 'vuex'
 export default {
   components: {
     Regexifybot: Regexifybot,
@@ -68,12 +69,27 @@ export default {
     Addchatbaseintegrationscripts: Addchatbaseintegrationscripts,
     Clearbotscript: Clearbotscript
   },
+  mounted () {
+    this.listBots()
+      .then(response => {
+        this.bots = response.data
+      })
+      .catch(error => {
+        this.$notify.error({
+          title: 'Error',
+          message: error.message,
+          showClose: false
+        })
+      })
+  },
   data () {
     return {
-      navIdxSelected: null
+      navIdxSelected: null,
+      bots: null
     }
   },
   methods: {
+    ...mapActions(['listBots']),
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
     },
