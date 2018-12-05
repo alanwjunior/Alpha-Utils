@@ -1,6 +1,11 @@
 <template>
   <div class="regexifybot">
     <h1>Add Tracking and Session</h1>
+    <el-alert
+      title="Add standard Trackings and SessionId to all block that have the [] marking in the name. If you add the flag -all at the end will append to all blocks in the buider."
+      type="info"
+      show-icon>
+    </el-alert>
     <el-row>
       <bot-select @selectedBot="updateSelectedBot"/>
     </el-row>
@@ -40,7 +45,11 @@ export default {
               let flow = response.data.resource
               this.addtrackingandsession({ Data: JSON.stringify(flow) })
                 .then(response => {
-                  console.log(response)
+                  const updatedFlow = response.data
+                  this.updatePublishedFlow({
+                    encodedAuthKey: encodedAuthKey,
+                    flow: updatedFlow
+                  })
                 })
                 .catch(error => this.notifyError(error))
             })
@@ -55,5 +64,9 @@ export default {
 <style lang="scss" scoped>
 .bot-select {
   padding-top: 5%;
+}
+
+.regexifybot h1 {
+  padding-bottom: 1%;
 }
 </style>

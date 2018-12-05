@@ -10,25 +10,25 @@
               <span>Regexifybot</span>
           </el-menu-item>
           <el-menu-item index="2" @click="navIdxSelected = 2">
-            <span>Addtrackingandsession</span>
+            <span>Add Tracking and Session</span>
           </el-menu-item>
           <el-menu-item index="3" @click="navIdxSelected = 3">
-            <span>Addextras</span>
+            <span>Add Extras</span>
           </el-menu-item>
           <el-menu-item index="4" @click="navIdxSelected = 4">
-            <span>Addstandardtrackingscripts</span>
+            <span>Add Standard Tracking Scripts</span>
           </el-menu-item>
           <el-menu-item index="5" @click="navIdxSelected = 5">
-            <span>AddsessionidtoScripts</span>
+            <span>Add Session Id </span>
           </el-menu-item>
           <el-menu-item index="6" @click="navIdxSelected = 6">
-            <span>Addlaststatescript</span>
+            <span>Add Last State</span>
           </el-menu-item>
           <el-menu-item index="7" @click="navIdxSelected = 7">
-            <span>Addchatbaseintegrationscripts</span>
+            <span>Add Chatbase Integration</span>
           </el-menu-item>
           <el-menu-item index="8" @click="navIdxSelected = 8">
-            <span>Clearbotscript</span>
+            <span>Clearbot</span>
           </el-menu-item>
         </el-menu>
       </el-col>

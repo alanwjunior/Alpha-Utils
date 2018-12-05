@@ -4,6 +4,9 @@
       <el-col :span="8">
         <el-card class="box-card">
           <el-form>
+            <div>
+              <img style="width: 50px" src="../assets/bot-icon.jpg" alt="">
+            </div>
             <h1 class="title">Login</h1>
             <el-row type="flex" justify="center">
               <el-col :span="16">
@@ -56,6 +59,7 @@ export default {
             .then(response => {
               localStorage.setItem('userName', response.data.fullName)
               localStorage.setItem('userId', response.dataid)
+              localStorage.setItem('userEmail', response.data.email)
               this.$router.push('dashboard')
             })
             .catch(error => {
@@ -82,7 +86,7 @@ export default {
 .login {
   padding-top: 25vh;
   .title {
-    padding: 5% 0%;
+    padding: 2% 0%;
   }
 }
 </style>

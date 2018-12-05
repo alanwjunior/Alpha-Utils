@@ -1,6 +1,16 @@
 <template>
   <div class="regexifybot">
     <h1>Add Session Id</h1>
+    <el-alert
+      title="Add scripts required to track the session of the user. This scripts will be added on everyblock that has user interaction and will update the session ID if the last interacion is grater than time configured in config.sessionTime."
+      type="info"
+      show-icon>
+    </el-alert>
+    <el-alert
+      title="It's necessary to register the bot variable: config.sessionTime"
+      type="warning"
+      show-icon>
+    </el-alert>
     <el-row>
       <bot-select @selectedBot="updateSelectedBot"/>
     </el-row>
@@ -40,7 +50,11 @@ export default {
               let flow = response.data.resource
               this.addsessionid({ Data: JSON.stringify(flow) })
                 .then(response => {
-                  console.log(response)
+                  const updatedFlow = response.data
+                  this.updatePublishedFlow({
+                    encodedAuthKey: encodedAuthKey,
+                    flow: updatedFlow
+                  })
                 })
                 .catch(error => this.notifyError(error))
             })
@@ -55,5 +69,9 @@ export default {
 <style lang="scss" scoped>
 .bot-select {
   padding-top: 5%;
+}
+
+.regexifybot h1 {
+  padding-bottom: 1%;
 }
 </style>

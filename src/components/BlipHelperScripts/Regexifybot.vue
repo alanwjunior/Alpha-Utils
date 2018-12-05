@@ -1,6 +1,11 @@
 <template>
   <div class="regexifybot">
     <h1>Regexify</h1>
+    <el-alert
+      title="Turns all the conditions to from a specific bot that check the user input into regex expressions. Can also be used to turn a sigle expression on a regex for blip."
+      type="info"
+      show-icon>
+    </el-alert>
     <el-row>
       <bot-select @selectedBot="updateSelectedBot"/>
     </el-row>
@@ -41,7 +46,8 @@ export default {
               let flow = response.data.resource
               this.regexify({ Data: JSON.stringify(flow) })
                 .then(response => {
-                  console.log(response)
+                  const updatedFlow = response.data
+                  console.log(response.data)
                 })
                 .catch(error => this.notifyError(error))
             })
@@ -56,5 +62,9 @@ export default {
 <style lang="scss" scoped>
 .bot-select {
   padding-top: 5%;
+}
+
+.regexifybot h1 {
+  padding-bottom: 1%;
 }
 </style>

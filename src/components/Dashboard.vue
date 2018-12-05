@@ -90,6 +90,7 @@ export default {
 
 .dashboard-cards {
   padding: 10% 0%;
+  min-height: 7vw;
 }
 
 .try-it-btn {

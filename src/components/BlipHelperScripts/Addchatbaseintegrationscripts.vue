@@ -2,6 +2,16 @@
   <div class="regexifybot">
     <div slot="header" class="clearfix">
       <h1>Add Chatbase Integration Scripts</h1>
+      <el-alert
+        title="Add scripts required to integrate manually with chatnase. This scripts will be added on everyblock that has user interaction and or bot interaction and will send it to chatbase using post."
+        type="info"
+        show-icon>
+      </el-alert>
+      <el-alert
+        title="It's necessary to register the bot variable: config.chatbaseURL, config.chatbasekey, config.version, config.chatbasetrack, config.platform"
+        type="warning"
+        show-icon>
+      </el-alert>
     </div>
     <el-row>
       <bot-select @selectedBot="updateSelectedBot"/>
@@ -14,10 +24,16 @@
 
 <script>
 import BotSelect from './../commons/BotSelect.vue'
+import guidService from './../../services/guid'
+
 import { mapActions } from 'vuex'
 export default {
   components: {
     BotSelect: BotSelect
+  },
+  mounted () {
+    console.log('guidService')
+    console.log(guidService.newGuid())
   },
   data () {
     return {
@@ -27,7 +43,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getBotDetails', 'getBotPublishedFlow', 'addchatbaseintegration', 'notifyError']),
+    ...mapActions(['getBotDetails', 'getBotPublishedFlow', 'addchatbaseintegration', 'notifyError', 'updatePublishedFlow']),
     updateSelectedBot (bot) {
       this.selectedBot = bot
     },
@@ -42,7 +58,11 @@ export default {
               let flow = response.data.resource
               this.addchatbaseintegration({ Data: JSON.stringify(flow) })
                 .then(response => {
-                  console.log(response)
+                  const updatedFlow = response.data
+                  this.updatePublishedFlow({
+                    encodedAuthKey: encodedAuthKey,
+                    flow: updatedFlow
+                  })
                 })
                 .catch(error => this.notifyError(error))
             })
@@ -57,5 +77,8 @@ export default {
 <style lang="scss" scoped>
 .bot-select {
   padding-top: 5%;
+}
+.regexifybot h1 {
+  padding-bottom: 1%;
 }
 </style>

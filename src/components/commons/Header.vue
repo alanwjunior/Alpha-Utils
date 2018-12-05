@@ -2,18 +2,18 @@
   <div class="menu">
     <el-row type="flex" justify="end">
       <el-col :span="4" class="logotipo">
-        <h1 style="cursor: pointer" @click="backDashboard">Alpha Utils</h1>
+        <h1 style="cursor: pointer; font-size: 25px; margin: 3% 0%;" @click="backDashboard"><img style="width: 25px" src="../../assets/bot-icon.jpg" alt=""> alpha utils</h1>
       </el-col>
       <el-col :span="12" :offset="8">
         <el-row>
           <el-col :span="4" class="menu-item">
-            <span class="cursor-pointer" @click="goToBlipHelperScripts">Blip Helper Scripts</span>
+            <span class="cursor-pointer" @click="goToBlipHelperScripts">Helper Scripts</span>
           </el-col>
           <el-col :span="4" class="menu-item">
-            <span class="cursor-pointer">Blip CLI</span>
+            <span class="cursor-pointer" @click="goToBlipCLI">BLiP CLI</span>
           </el-col>
           <el-col :span="4" class="menu-item">
-            <span class="cursor-pointer">BotStrapper</span>
+            <span class="cursor-pointer" @click="goToBotStrapper">BotStrapper</span>
           </el-col>
           <el-col :span="4" :offset="4" class="menu-item">
             <el-dropdown @command="handleDropdown">
@@ -56,6 +56,12 @@ export default {
     },
     goToBlipHelperScripts () {
       this.$router.push('/bliphelperscripts')
+    },
+    goToBotStrapper () {
+      this.$router.push('/botstrapper')
+    },
+    goToBlipCLI () {
+      this.$router.push('/blipcli')
     }
   }
 }

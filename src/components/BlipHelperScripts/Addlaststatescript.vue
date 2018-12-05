@@ -1,6 +1,11 @@
 <template>
   <div class="regexifybot">
     <h1>Add Last State</h1>
+    <el-alert
+      title="Append laststateUpdate script in all the block that has a [] on the name"
+      type="info"
+      show-icon>
+    </el-alert>
     <el-row>
       <bot-select @selectedBot="updateSelectedBot"/>
     </el-row>
@@ -40,7 +45,11 @@ export default {
               let flow = response.data.resource
               this.addlaststate({ Data: JSON.stringify(flow) })
                 .then(response => {
-                  console.log(response)
+                  const updatedFlow = response.data
+                  this.updatePublishedFlow({
+                    encodedAuthKey: encodedAuthKey,
+                    flow: updatedFlow
+                  })
                 })
                 .catch(error => this.notifyError(error))
             })
@@ -55,5 +64,9 @@ export default {
 <style lang="scss" scoped>
 .bot-select {
   padding-top: 5%;
+}
+
+.regexifybot h1 {
+  padding-bottom: 1%;
 }
 </style>

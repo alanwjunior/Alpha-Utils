@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
-    </div>
-    <app-header v-if="!isLoginPage"/>
-    <router-view/>
+    <spinner />
+      <app-header v-if="!isLoginPage"/>
+      <router-view/>
   </div>
 </template>
 
 <script>
 import AppHeader from './components/commons/Header.vue'
+import Spinner from './components/commons/Spinner.vue'
+
 export default {
   components: {
-    AppHeader: AppHeader
+    AppHeader: AppHeader,
+    Spinner: Spinner
   },
   computed: {
     isLoginPage () {
