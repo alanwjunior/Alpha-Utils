@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import guidService from './services/guid'
+import { Notification } from 'element-ui'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,7 @@ export default new Vuex.Store({
   },
   actions: {
     notifyError (error) {
-      this.$notify.error({
+      Notification.error({
         title: 'Error',
         message: error.message,
         showClose: false
@@ -59,13 +60,13 @@ export default new Vuex.Store({
       })
         .then(response => {
           if (response.data.status === 'success') {
-            this.$notify.success({
+            Notification.success({
               title: 'Flow saved',
               message: 'Flow was saved successfully',
               showClose: false
             })
           } else {
-            this.$notify.warning({
+            Notification.warning({
               title: 'Something went wrong',
               message: 'Please try again',
               showClose: false

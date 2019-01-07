@@ -17,8 +17,9 @@
 
 <script>
 import BotSelect from './../commons/BotSelect.vue'
-
 import { mapActions } from 'vuex'
+const blipScripts = require('blip.scripts')
+
 export default {
   components: {
     BotSelect: BotSelect
@@ -37,7 +38,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getBotDetails', 'getBotPublishedFlow', 'regexify', 'notifyError']),
+    ...mapActions(['getBotDetails', 'getBotPublishedFlow', 'regexify', 'notifyError', 'updatePublishedFlow']),
     updateSelectedBot (bot) {
       this.selectedBot = bot
     },
@@ -50,11 +51,11 @@ export default {
           this.getBotPublishedFlow(encodedAuthKey)
             .then(response => {
               let flow = response.data.resource
-              this.regexify({ Data: JSON.stringify(flow) })
-                .then(response => {
-                  console.log(response.data)
-                })
-                .catch(error => this.notifyError(error))
+              let updatedFlow = blipScripts.regexifyBot(flow)
+              this.updatePublishedFlow({
+                encodedAuthKey: encodedAuthKey,
+                flow: updatedFlow
+              })
             })
             .catch(error => this.notifyError(error))
         })
