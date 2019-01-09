@@ -74,30 +74,6 @@ export default new Vuex.Store({
           }
         })
         .catch(error => dispatch('notifyError', error))
-    },
-    regexify ({ state }, flow) {
-      return axios.post(state.alphaUtilsUrl + 'BlipHelperScripts/regexify', flow)
-    },
-    addtrackingandsession ({ state }, flow) {
-      return axios.post(state.alphaUtilsUrl + 'BlipHelperScripts/addtrackingandsession', flow)
-    },
-    addextras ({ state }, flow) {
-      return axios.post(state.alphaUtilsUrl + 'BlipHelperScripts/addextras', flow)
-    },
-    addstandardtracking ({ state }, flow) {
-      return axios.post(state.alphaUtilsUrl + 'BlipHelperScripts/addstandardtracking', flow)
-    },
-    addsessionid ({ state }, flow) {
-      return axios.post(state.alphaUtilsUrl + 'BlipHelperScripts/addsessionid', flow)
-    },
-    addlaststate ({ state }, flow) {
-      return axios.post(state.alphaUtilsUrl + 'BlipHelperScripts/addlaststate', flow)
-    },
-    addchatbaseintegration ({ state }, flow) {
-      return axios.post(state.alphaUtilsUrl + 'BlipHelperScripts/addchatbaseintegration', flow)
-    },
-    clearbot ({ state }, flow) {
-      return axios.post(state.alphaUtilsUrl + 'BlipHelperScripts/clearbot', flow)
     }
   }
 })
