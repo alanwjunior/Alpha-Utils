@@ -16,9 +16,12 @@
 </template>
 
 <script>
+import { Notification } from 'element-ui'
 import BotSelect from './../commons/BotSelect.vue'
 import { mapActions } from 'vuex'
+import blipApi from 'blip-version-control-integration'
 const blipScripts = require('blip.scripts')
+const blipService = blipApi.newBlipService(localStorage.getItem('token'))
 
 export default {
   components: {
@@ -39,27 +42,28 @@ export default {
   },
   methods: {
     ...mapActions(['getBotDetails', 'getBotPublishedFlow', 'addextras', 'notifyError', 'updatePublishedFlow']),
-    updateSelectedBot (bot) {
+    async updateSelectedBot (bot) {
       this.selectedBot = bot
     },
-    runScripts () {
-      this.getBotDetails(this.selectedBot.shortName)
-        .then(response => {
-          this.botAccessKey = atob(response.data.accessKey)
-          let authorizationKey = this.selectedBot.shortName + ':' + this.botAccessKey
-          let encodedAuthKey = btoa(authorizationKey)
-          this.getBotPublishedFlow(encodedAuthKey)
-            .then(response => {
-              let flow = response.data.resource
-              const updatedFlow = blipScripts.addExtras(flow)
-              this.updatePublishedFlow({
-                encodedAuthKey: encodedAuthKey,
-                flow: updatedFlow
-              })
-            })
-            .catch(error => this.notifyError(error))
+    async runScripts () {
+      try {
+        let flow = await blipService.getPublishedFlowAsync(this.selectedBot.shortName)
+        const updatedFlow = blipScripts.addExtras(flow)
+        let updateStatus = await blipService.updateSavedFlowAsync(flow, this.selectedBot.shortName)
+        if (updateStatus.status === 'success') {
+          Notification.success({
+            title: 'Flow saved',
+            message: 'Flow was saved successfully',
+            showClose: false
+          })
+        }
+      } catch (error) {
+        Notification.error({
+          title: 'Error',
+          message: error.message,
+          showClose: false
         })
-        .catch(error => this.notifyError(error))
+      }
     }
   }
 }
