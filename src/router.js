@@ -5,6 +5,8 @@ import Dashboard from './components/Dashboard.vue'
 import BotStrapper from './components/BotStrapper/BotStrapper'
 import BlipHelperScripts from './components/BlipHelperScripts/BlipHelperScripts.vue'
 import BlipCLI from './components/BlipCLI/BlipCLI.vue'
+import BotTranslator from './components/BotTranslator/BotTranslator'
+import BotAutomaticDeploy from './components/BlipAutomaticDeploy/BlipAutomaticDeploy'
 
 Vue.use(Router)
 
@@ -36,6 +38,16 @@ const router = new Router({
       path: '/blipcli',
       name: 'blipcli',
       component: BlipCLI
+    },
+    {
+      path: '/bottranslator',
+      name: 'bottranslator',
+      component: BotTranslator
+    },
+    {
+      path: '/BotAutomaticDeploy',
+      name: 'BotAutomaticDeploy',
+      component: BotAutomaticDeploy
     }
   ]
 })

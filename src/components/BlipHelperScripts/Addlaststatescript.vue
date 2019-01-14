@@ -71,7 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 .bot-select {
-  padding-top: 5%;
+  padding: 5% 0%;
 }
 
 .regexifybot h1 {

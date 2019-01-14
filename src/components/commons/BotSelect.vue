@@ -1,6 +1,6 @@
 <template>
-  <el-form class="bot-select" label-width="120px" :label-position="labelPosition" >
-    <el-form-item prop="botName" label="Selecione o bot:" v-if="bots">
+  <el-form label-width="120px" :label-position="labelPosition" >
+    <el-form-item prop="botName" :label="selectLabel" v-if="bots">
       <el-select v-model="selectedBot" placeholder="Select" @change="selectBot">
         <el-option
           v-for="item in bots"
@@ -19,6 +19,9 @@ export default {
     bots: {
       type: Array,
       required: true
+    },
+    selectLabel: {
+      default: 'Selecione o bot'
     }
   },
   data () {

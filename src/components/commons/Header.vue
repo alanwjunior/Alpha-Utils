@@ -10,7 +10,10 @@
             <span class="cursor-pointer" @click="goToBlipHelperScripts">Helper Scripts</span>
           </el-col>
           <el-col :span="4" class="menu-item">
-            <span class="cursor-pointer" @click="goToBlipCLI">BLiP CLI</span>
+            <span class="cursor-pointer" @click="goToBotTranslator">Bot Translator</span>
+          </el-col>
+          <el-col :span="4" class="menu-item">
+            <span class="cursor-pointer" @click="goToAutomaticDeploy">Automatic Deploy</span>
           </el-col>
           <el-col :span="4" class="menu-item">
             <span class="cursor-pointer" @click="goToBotStrapper">BotStrapper</span>
@@ -62,6 +65,12 @@ export default {
     },
     goToBlipCLI () {
       this.$router.push('/blipcli')
+    },
+    goToBotTranslator () {
+      this.$router.push('/bottranslator')
+    },
+    goToAutomaticDeploy () {
+      this.$router.push('/BotAutomaticDeploy')
     }
   }
 }
