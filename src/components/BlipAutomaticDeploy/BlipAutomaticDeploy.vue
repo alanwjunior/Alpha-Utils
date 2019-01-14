@@ -54,9 +54,9 @@
                 </div>
                 <div v-if="active == 2" class="step-content">
                   <h3>Automatic Deploy</h3>
-                  <bot-select :bots="bots" :selectLabel="'Source Bot:'" />
-                  <bot-select :bots="bots" :selectLabel="'Destiny Bot:'" />
-                  <el-button>Deploy</el-button>
+                  <bot-select :bots="bots" :selectLabel="'Source Bot:'" @selectedBot="selectedSourceBot" />
+                  <bot-select :bots="bots" :selectLabel="'Destiny Bot:'" @selectedBot="selectedDestinyBot" />
+                  <el-button @click="deploy">Deploy</el-button>
                 </div>
             </el-row>
         </el-card>
@@ -67,8 +67,8 @@
 import { mapActions } from 'vuex'
 import BotSelect from './../commons/BotSelect'
 import blipControlVersion from 'blip-version-control-integration'
-console.log('blipControlVersion')
-console.log(blipControlVersion)
+const blipIntegrationService = blipControlVersion.newBlipService(localStorage.getItem('token'))
+
 export default {
   components: {
     BotSelect: BotSelect
@@ -100,7 +100,9 @@ export default {
         repositoryName: '',
         branchName: '',
         newCommitMessage: ''
-      }
+      },
+      sourceBotShortName: '',
+      destinyBotShortName: ''
     }
   },
   methods: {
@@ -117,6 +119,16 @@ export default {
     isAuthValid () {
       return this.auth.userCredential.username && this.auth.userCredential.password && this.auth.repositoryName &&
         this.auth.branchName && this.auth.newCommitMessage
+    },
+    async deploy () {
+      await blipIntegrationService.deployUsingGithubAsync(this.sourceBotShortName, this.destinyBotShortName, this.auth)
+      console.log('finished')
+    },
+    selectedSourceBot (bot) {
+      this.sourceBotShortName = bot.shortName
+    },
+    selectedDestinyBot (bot) {
+      this.destinyBotShortName = bot.shortName
     }
   }
 }

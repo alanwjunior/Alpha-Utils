@@ -50,7 +50,7 @@ export default {
       this.selectedBot = bot
     },
     async runScripts () {
-       try {
+      try {
         let flow = await blipService.getPublishedFlowAsync(this.selectedBot.shortName)
         const updatedFlow = blipScripts.addSessionId(flow)
         let updateStatus = await blipService.updateSavedFlowAsync(updatedFlow, this.selectedBot.shortName)

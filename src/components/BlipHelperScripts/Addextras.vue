@@ -49,7 +49,7 @@ export default {
       try {
         let flow = await blipService.getPublishedFlowAsync(this.selectedBot.shortName)
         const updatedFlow = blipScripts.addExtras(flow)
-        let updateStatus = await blipService.updateSavedFlowAsync(flow, this.selectedBot.shortName)
+        let updateStatus = await blipService.updateSavedFlowAsync(updatedFlow, this.selectedBot.shortName)
         if (updateStatus.status === 'success') {
           Notification.success({
             title: 'Flow saved',
