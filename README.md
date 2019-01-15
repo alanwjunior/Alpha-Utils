@@ -1,5 +1,5 @@
 # Alpha Utils
-Interface to run some scripts that alter chatbot's flow builded on BLiP platform.
+Web Interface used to run some scripts that allows updating chatbot's flow builded on BLiP platform.
 
 ## Project setup
 ```
